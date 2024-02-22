@@ -19,7 +19,7 @@
                 @csrf
                 <div class="form-group my-2">
                     <label for="title">Title</label>
-                    <input class="form-control @error('title') is-invalid @enderror" type="text" name="title" id="title" value="{{ old('title') }}" required>
+                    <input class="form-control @error('title') is-invalid @enderror" type="text" name="title" id="title" value="{{ old('title') }}">
                     @error('title')
                         <div class="text-danger"> {{ $message }}</div>
                     @enderror
@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group my-2">
                     <label for="preview_image">Preview image</label>
-                    <input class="form-control @error('preview_image') is-invalid @enderror" type="text" name="preview_image" id="preview_image" value="{{ old('preview_image') }}" required>
+                    <input class="form-control @error('preview_image') is-invalid @enderror" type="text" name="preview_image" id="preview_image" value="{{ old('preview_image') }}">
                     @error('preview_image')
                         <div class="text-danger"> {{ $message }}</div>
                     @enderror
