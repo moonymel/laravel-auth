@@ -4,6 +4,14 @@
 
 <div class="container">
     <div class="row my-4">
+        <div class="col-12 d-flex justify-content-between align-items-center my-3">
+            <div>
+                <h2>My projects</h2>
+            </div>
+            <div>
+                <a href="{{ route('admin.projects.create') }}" class="btn btn-sm btn-success">New Project</a>
+            </div>
+        </div>
         <div class="col-12">
             <table class="table table-striped">
                 <thead>
@@ -26,7 +34,7 @@
                         <td>{{ Str::limit($project->description, 20, '...') }}</td>
                         <td>{{ $project->authors }}</td>
                         <td>{{ $project->completed ? 'Yes' : 'No' }}</td>
-                        <td><a href="{{ route('admin.projects.show', ['project' => $project->id]) }}" class="btn btn-sm btn-primary btn-square">
+                        <td><a href="{{ route('admin.projects.show', ['project' => $project->slug]) }}" class="btn btn-sm btn-primary btn-square">
                             <i class="bi bi-eye-fill"></i>
                         </a></td>
                     </tr>
