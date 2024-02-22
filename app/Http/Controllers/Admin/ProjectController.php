@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Support\Str;
 
+
 use App\Http\Controllers\Controller;
 
 class ProjectController extends Controller
@@ -69,9 +70,10 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit($slug)
     {
-        //
+        $project = Project::find($slug);
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**

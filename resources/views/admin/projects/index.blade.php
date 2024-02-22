@@ -34,9 +34,14 @@
                         <td>{{ Str::limit($project->description, 20, '...') }}</td>
                         <td>{{ $project->authors }}</td>
                         <td>{{ $project->completed ? 'Yes' : 'No' }}</td>
-                        <td><a href="{{ route('admin.projects.show', ['project' => $project->slug]) }}" class="btn btn-sm btn-primary btn-square">
-                            <i class="bi bi-eye-fill"></i>
-                        </a></td>
+                        <td>
+                            <a href="{{ route('admin.projects.show', ['project' => $project->slug]) }}" class="btn btn-sm btn-primary btn-square">
+                                <i class="bi bi-eye-fill"></i>
+                            </a>
+                            <a href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}" class="btn btn-sm btn-warning btn-square">
+                                <i class="bi bi-pencil-fill"></i>
+                            </a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
