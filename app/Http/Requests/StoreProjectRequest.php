@@ -25,9 +25,8 @@ class StoreProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:200|unique',
-            'decription' => 'required',
-            'preview_image' => 'required',
+            'title' => 'required|max:200|unique:projects',
+            'description' => 'required',
             'authors' => 'required|max:200',
             'completed' => 'required',
         ];
@@ -39,7 +38,6 @@ class StoreProjectRequest extends FormRequest
             'title.max' => 'Title must be under 200 characters!',
             'title.unique' => 'Title must be unique!',
             'description.required' => 'Description section must be filled!',
-            'preview_image.required' => 'Preview Image section must be filled!',
             'authors.required' => 'Authors section must be filled!',
             'authors.max' => 'Authors must be under 200 characters!',
             'completed.required' => 'Completed section must be filled!',
