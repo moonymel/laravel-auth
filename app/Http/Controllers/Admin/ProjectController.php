@@ -95,14 +95,21 @@ class ProjectController extends Controller
     {
         $form_data = $request->all();
 
-        dd($request->all());
+        $exists = Project::where('title', 'LIKE', $form_data['title'])->get();
 
-        // $exists = Project::where('title', 'LIKE', $form_data['title'])->get();
+        if(count($exists) > 0){
+            $error_message = 'This title is already used in another project!';
+            return redirect()->route('admin.projects.edit', compact('project', 'error_message'));
+        }
 
-        // if(count($exists) > 0){
-        //     $error_message = 'This title is already used in another project!';
-        //     return redirect()->route('admin.projects.edit', compact('project', 'error_message'));
-        // }
+        if($request->hasFile('preview_image')){
+            if($project->preview_image != null){
+                Storage::disk('public')->delete($project->preview_image);
+            }
+
+            $path = Storage::disk('public')->put('projects_image', $form_data['preview_image']);
+            $form_data['preview_image'] = $path;
+        }
 
         $slug = Str::slug($form_data['title'], '-');
         $form_data['slug'] = $slug;
@@ -110,7 +117,7 @@ class ProjectController extends Controller
 
         $project->update($form_data);
 
-        return redirect()->route('admin.projects.index');
+        return redirect()->route('admin.projects.index', ['project' => $project->slug]);
     }
 
     /**
